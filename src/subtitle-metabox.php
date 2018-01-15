@@ -12,7 +12,7 @@
 namespace ChristophHerr\CustomMetaBox\Src;
 
 use WP_Post;
-add_action( 'admin_menu', __NAMESPACE__ . '\register_meta_box' );
+add_action( 'admin_menu', __NAMESPACE__ . '\register_subtitle_meta_box' );
 /**
  * Register the meta box.
  *
@@ -20,11 +20,11 @@ add_action( 'admin_menu', __NAMESPACE__ . '\register_meta_box' );
  *
  * @return void
  */
-function register_meta_box() {
+function register_subtitle_meta_box() {
 	add_meta_box(
 		'custom_meta_box_subtitle',
 		__( 'Subtitle', 'custom-meta-box' ),
-		__NAMESPACE__ . '\render_meta_box',
+		__NAMESPACE__ . '\render_subtitle_meta_box',
 		'post'
 	);
 }
@@ -38,7 +38,7 @@ function register_meta_box() {
  *
  * @return void
  */
-function render_meta_box( WP_Post $post, array $meta_box ) {
+function render_subtitle_meta_box( WP_Post $post, array $meta_box ) {
 	// Security with a nonce.
 	wp_nonce_field( 'custom_meta_box_save', 'custom_meta_box_nonce' );
 
@@ -49,10 +49,10 @@ function render_meta_box( WP_Post $post, array $meta_box ) {
 	// Do any processing that needs to be done.
 
 	// Load the view file.
-	include CUSTOM_META_BOX_DIR . 'src/view.php';
+	include CUSTOM_META_BOX_DIR . 'src/views/subtitle.php';
 }
 
-add_action( 'save_post', __NAMESPACE__ . '\save_custom_meta_box', 10, 2 );
+add_action( 'save_post', __NAMESPACE__ . '\save_subtitle_meta_box', 10, 2 );
 /**
  * Save changes to the custom meta box.
  *
@@ -63,7 +63,7 @@ add_action( 'save_post', __NAMESPACE__ . '\save_custom_meta_box', 10, 2 );
  *
  * @return bool
  */
-function save_custom_meta_box( $post_id, $post ) {
+function save_subtitle_meta_box( $post_id, $post ) {
 	// Make sure it's the right metabox.
 	if ( ! array_key_exists( 'custom_meta_box', $_POST ) ) {
 		return false;
