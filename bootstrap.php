@@ -51,5 +51,6 @@ function init_constants() {
 function launch() {
 	init_constants();
 	require CUSTOM_META_BOX_DIR . '/src/metabox.php';
+	require CUSTOM_META_BOX_DIR . 'src/output.php';
 }
 launch();

@@ -51,6 +51,7 @@ function render_meta_box( WP_Post $post, array $meta_box ) {
 	// Load the view file.
 	include CUSTOM_META_BOX_DIR . 'src/view.php';
 }
+
 add_action( 'save_post', __NAMESPACE__ . '\save_custom_meta_box', 10, 2 );
 /**
  * Save changes to the custom meta box.
@@ -96,3 +97,4 @@ function save_custom_meta_box( $post_id, $post ) {
 		update_post_meta( $post_id, $meta_key, $value );
 	}
 }
+
